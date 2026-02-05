@@ -10,13 +10,20 @@ public class NumberGuessGame {
         do {
             int numberToGuess = random.nextInt(100) + 1;
             int attempts = 0;
-            int guess = 0;
+            Integer guess = null;
 
             System.out.println("Welcome to Number Guessing Game!");
             System.out.println("Guess a number between 1 and 100");
 
-            while (guess != numberToGuess) {
+            while (guess == null || guess != numberToGuess) {
                 System.out.print("Enter your guess: ");
+
+                if (!sc.hasNextInt()) {
+                    System.out.println("Invalid input! Please enter a number.");
+                    sc.next(); // discard wrong input
+                    continue;
+                }
+
                 guess = sc.nextInt();
                 attempts++;
 
